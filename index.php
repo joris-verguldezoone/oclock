@@ -4,11 +4,7 @@
 // Vous devrez être capable d’augmenter le temps du minuteur grâce à des
 // flèches, ou de rentrer un temps en input. Lorsque le minuteur arrive à zéro,
 // une alerte (et pas une popup) apparaît et indique que le temps est écoulé.
-// Pour le chronomètre, vous devrez le lancer et l’arrêter grâce à un même
-// bouton (marche / arrêt). De plus, vous devrez implémenter un bouton
-// “tour”, qui ajoutera le temps affiché, au moment où l’utilisateur appuie, dans
-// une liste “temps”. Un bouton reset sera présent pour remettre le chrono à
-// 0.
+
 // En ce qui concerne l’horloge, elle devra être à l’heure française (UTC + 1),
 // fonctionnelle, et donner l’heure, les minutes, et les secondes.
 // Enfin pour le réveil, l’utilisateur pourra entrer une heure et un texte en
@@ -34,8 +30,8 @@
 </head>
 <body>
     <main>  
-
-    <form name='horloge'>
+    <span>Minuteur</span>
+    <form name='horloge' >
     
     <label for=''></label>
     <input type='' id='' name='' placeholder=''>
@@ -50,17 +46,33 @@
     </form>
 
     <form name="formulaire">
-        <button type='button' name='less' id='less' onClick='addLess(less)'><i class="fa fa-arrow-left" style='.' aria-hidden="true"></i></button>
-        <input type="text" name="minuteur" value= 0 >
-        <button type='button' name='more' id='more' onClick='addMore(more)'><i class="fa fa-arrow-right" aria-hidden="true"></i></button><br/>
+        <button type='button' name='less' id='less' onClick='addLess();'><i class="fa fa-arrow-left"  aria-hidden="true"></i></button>
+        <input type="text" name="minuteur" value='0' >
+        <button type='button' name='more' id='more' onClick='addMore();'><i class="fa fa-arrow-right" aria-hidden="true"></i></button><br/>
         
 
 
-        <input type="button" value="Démarrez!" onClick="minutageGo();"> 
+        <input type="button" value="Démarrez!" id='demarrerChrono' onClick="startMinuteur();"> 
         <!-- quand je click ça lance l'événement du minutage -->
-        <input type="button" value="Arrêter" name='arreter' onClick="clearTimeout(attente)">
-        <input type="reset" value="reset" name='reset' value='reset'>
+        <input type="button" value="Arrêter" name='arreter' onClick="stopMinuteur();">
+        <input type="reset" value="reset" name='reset' value='reset' onClick="resetMinuteur();">
         <!-- clear l'evenement -->
+
+    </form>
+ 
+
+    <span>Chronomètre</span>
+     <!-- Pour le chronomètre, vous devrez le lancer et l’arrêter grâce à un même
+    bouton (marche / arrêt). De plus, vous devrez implémenter un bouton
+    “tour”, qui ajoutera le temps affiché, au moment où l’utilisateur appuie, dans
+    une liste “temps”. Un bouton reset sera présent pour remettre le chrono à
+    0. -->
+    <form name='chrono'>
+
+    <input type='text' id='chronoDisplay' name='chronoDisplay' value='0'>
+
+    <input type='button' id='chronoTemps' name='chronoTemps' onClick="chronoGo();" value='Lancer le Chrono'>
+
 
     </form>
 
