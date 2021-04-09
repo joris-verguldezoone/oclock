@@ -5,16 +5,7 @@
 // flèches, ou de rentrer un temps en input. Lorsque le minuteur arrive à zéro,
 // une alerte (et pas une popup) apparaît et indique que le temps est écoulé.
 
-// En ce qui concerne l’horloge, elle devra être à l’heure française (UTC + 1),
-// fonctionnelle, et donner l’heure, les minutes, et les secondes.
-// Enfin pour le réveil, l’utilisateur pourra entrer une heure et un texte en
-// input. Lorsque l’horloge atteindra l’heure entrée, une alerte (et pas une
-// popup) apparaît indiquant le message que l’utilisateur aura rentré. De plus,
-// l’utilisateur aura la possibilité d’entrer plusieurs alarmes qui seront
-// affichées dans une liste, avec “passée” si l’heure de l’alarme est passée, et
-
-// “dans x temps” avec x représentant le temps restant avant que l’heure ne
-// soit atteinte.
+//
 
 
 ?>
@@ -83,20 +74,31 @@
             <div id='taleauTour'></div>
         </div>
     </section>
+    <!-- En ce qui concerne l’horloge, elle devra être à l’heure française (UTC + 1), -->
+ <!-- fonctionnelle, et donner l’heure, les minutes, et les secondes.
+
+ Enfin pour le réveil, l’utilisateur pourra entrer une heure et un texte en
+ input. Lorsque l’horloge atteindra l’heure entrée, une alerte (et pas une
+ popup) apparaît indiquant le message que l’utilisateur aura rentré. De plus,
+ l’utilisateur aura la possibilité d’entrer plusieurs alarmes qui seront
+ affichées dans une liste, avec “passée” si l’heure de l’alarme est passée, et
+
+ “dans x temps” avec x représentant le temps restant avant que l’heure ne
+ soit atteinte. -->
     <section id='horloge'>
-    <!-- <form name='horloge' > 
+    <form name='horloge' > 
     
-    <label for=''></label>
-    <input type='' id='' name='' placeholder=''>
+        <input type='text' id='tempsReelInput' name='tempsReelInput' onLoad="horlogeTempsReel();">
 
     <label for='insertNumber'>InsertNumber</label>
-    <input type='number' id='insertNumber' name='insertNumber' placeholder='60'>
-
-
+    <input type='datetime-local' id='insertDate' name='insertDate'>
+    <textarea id='insertText' name='insertText' placeholder="Rendez-vous professionnel"></textarea>  
+    <input type='button' name='submitReveil' id='submitReveil' onClick='submitReveilFunc();' value='Enregistrer'>
+<!-- 
     <label for=''></label>
-    <input type='' id='' name='' placeholder=''>
+    <input type='' id='' name='' placeholder=''> --> -->
     
-    </form> -->
+    </form> 
     </section>
  
 

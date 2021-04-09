@@ -1,6 +1,3 @@
-var no = new Date().toLocaleString()
-console.log(no)
-
 // minuteur
 
 var sum = 0;
@@ -102,3 +99,44 @@ function chronoTour() {
     tabStr = tab.join(' ') // par defaut il enleve les , 
     document.getElementById('taleauTour').innerHTML = tabStr
 }
+
+// Horloge
+var attenteHorloge;
+var reveil;
+var textReveil = "";
+
+function horlogeTempsReel(){
+    var tempsReel = new Date().toLocaleString()
+    var d = new Date()
+
+    var datestring = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+    d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2);
+    tempsReel.toLocaleString();
+    // console.log(tempsReel)
+    document.horloge.tempsReelInput.value = datestring
+    attenteHorloge = setTimeout("horlogeTempsReel()", 1000);
+
+return tempsReel;
+    
+}
+horlogeTempsReel();
+
+function submitReveilFunc(){
+
+    reveil = window.document.horloge.insertDate.value
+    textReveil = window.document.horloge.insertText.value
+   
+    console.log(reveil)
+    console.log(textReveil)
+
+    tempsReel = horlogeTempsReel();
+    reveil.toLocaleString()
+    console.log(tempsReel)
+    console.log(reveil)
+    if(tempsReel == reveil){
+        alert('debout on se leve')
+
+    }
+
+}
+// document.getElementById('submitReveil').onclick = submitReveil();
