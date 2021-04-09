@@ -24,66 +24,81 @@ function addLess() {
 
 var inuse = 0;
 
-function startMinuteur(){
-    if(!inuse){
+function startMinuteur() {
+    if (!inuse) {
         minutageGo()
         inuse = 1;
     }
 }
-function stopMinuteur(){
+function stopMinuteur() {
     clearTimeout(attente)
     inuse = 0
 }
-function resetMinuteur(){
+function resetMinuteur() {
     inuse = 0
 }
-
 function minutageGo() {
-    
-        var nombre_qui_change = window.document.formulaire.minuteur.value;
-    
-        // on récupere: le name du formulaire -> de l'input qui déclenche l'évévement 5 -> value = value mais si on l'appel pas y'a r 
-        nombre_qui_change = parseInt(nombre_qui_change) - 1;
-        // parseInt c'est intval mais en js 
-        // on récupere a chaque fois le meme nombre que l'on parse puis que l'on incrémente en int
-        window.document.formulaire.minuteur.value = nombre_qui_change;
-        // on affiche dans l'input minuteur le nombre qui change
-        attente = setTimeout("minutageGo()", 1000);
-        if (nombre_qui_change <= 0) {
-            alert("ding ding ding fin du minuteur")
-            nombre_qui_change = 0
-            window.document.formulaire.minuteur.value = nombre_qui_change;
-            inuse = 0
-    
-            return clearTimeout(attente) // nombre_ki_change_plus
-        }
-    
+    var nombre_qui_change = window.document.formulaire.minuteur.value;
 
-    // var stop = window.document.formulaire.arreter.value;
-    // onclick.arreter({ function() { alert("ding ding ding par dessus la troisieme corde"); } })
-    // si le minuteur atteint 1000 alors il s'eteint 
+    // on récupere: le name du formulaire -> de l'input qui déclenche l'évévement 5 -> value = value mais si on l'appel pas y'a r 
+    nombre_qui_change = parseInt(nombre_qui_change) - 1;
+    // parseInt c'est intval mais en js 
+    // on récupere a chaque fois le meme nombre que l'on parse puis que l'on incrémente en int
+    window.document.formulaire.minuteur.value = nombre_qui_change;
+    // on affiche dans l'input minuteur le nombre qui change
+    attente = setTimeout("minutageGo()", 1000);
+    if (nombre_qui_change <= 0) {
+        alert("ding ding ding fin du minuteur")
+        nombre_qui_change = 0
+        window.document.formulaire.minuteur.value = nombre_qui_change;
+        inuse = 0
+
+        return clearTimeout(attente) // nombre_ki_change_plus
+    }
 }
 
 // CHRONO
-function chronoGo() {
+var inuse2 = 0
+var attenteChrono;
+function startChrono() { // start and stop 
+    console.log(inuse2)
+    if (inuse2) {   // y'a un cheat code quand on spam le click chaque seconde s'ajoute instantannément 
+        inuse2 = 0;
+        clearTimeout(attenteChrono)
 
+    }
+    else {
+        chronoGo();
+        // ChronoGo()
+        inuse2 = 1;
+    }
+}
+function resetChrono() {
+    clearTimeout(attenteChrono)
+    inuse = 0
+    console.log(tab)
+    console.log(tabStr)
+    tab = [];
+    tabStr = '';
+    document.getElementById('taleauTour').innerHTML = tabStr
+
+}
+function chronoGo() {
     var chrono_nombre = window.document.chrono.chronoDisplay.value;
 
     chrono_nombre = parseInt(chrono_nombre) + 1;
-    
+
     window.document.chrono.chronoDisplay.value = chrono_nombre;
 
-    attente = setTimeout("chronoGo()", 1000);
-     if (chronoGo <= 0) {
-    //     alert("ding ding ding fin du minuteur")
-    //     chrono_nombre = 0
-    //     window.document.chrono.chronoTemps.value = chrono_nombre;
-
-    //     return clearTimeout(attente) // nombre_ki_change_plus
-    // }
-
-    // var stop = window.document.formulaire.arreter.value;
-    // onclick.arreter({ function() { alert("ding ding ding par dessus la troisieme corde"); } })
-    // si le minuteur atteint 1000 alors il s'eteint 
+    attenteChrono = setTimeout("chronoGo()", 1000);
 }
+var tab = [];
+var i = 0
+var tabStr = ''
+function chronoTour() {
+    tab.push(window.document.chrono.chronoDisplay.value);
+    tab.push('<br/ >')
+    console.log(tab);
+    tabStr = tab.join(' ') // par defaut il enleve les , 
+    document.getElementById('taleauTour').innerHTML = tabStr
 }
