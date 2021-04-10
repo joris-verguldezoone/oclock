@@ -94,6 +94,7 @@
     <input type='datetime-local' id='insertDate' name='insertDate'>
     <textarea id='insertText' name='insertText' placeholder="Rendez-vous professionnel"></textarea>  
     <input type='button' name='submitReveil' id='submitReveil' onClick='submitReveilFunc();' value='Enregistrer'>
+    <div id='taleauTourHorloge'></div>
 <!-- 
     <label for=''></label>
     <input type='' id='' name='' placeholder=''> --> -->

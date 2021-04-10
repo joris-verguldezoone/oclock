@@ -104,39 +104,71 @@ function chronoTour() {
 var attenteHorloge;
 var reveil;
 var textReveil = "";
-
-function horlogeTempsReel(){
-    var tempsReel = new Date().toLocaleString()
+var tempsReel = "";
+function horlogeTempsReel() {
+    // var tempsReel = new Date().toLocaleString()
     var d = new Date()
-
-    var datestring = ("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
-    d.getFullYear() + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2);
-    tempsReel.toLocaleString();
     // console.log(tempsReel)
+    var datestring = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+        ("0" + d.getDate()).slice(-2) + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2);
+    // tempsReel.toLocaleString();
+    // console.log(tempsReel.substr(0, 16));
+    // console.log(datestring);
     document.horloge.tempsReelInput.value = datestring
     attenteHorloge = setTimeout("horlogeTempsReel()", 1000);
 
-return tempsReel;
-    
+    return datestring;
 }
-horlogeTempsReel();
-
-function submitReveilFunc(){
+tempsReel = horlogeTempsReel();
+arrayReveil = [];
+function submitReveilFunc() {
 
     reveil = window.document.horloge.insertDate.value
     textReveil = window.document.horloge.insertText.value
-   
-    console.log(reveil)
+    reveil = reveil.replace('T', ' ');
+
+    // console.log(reveil)
     console.log(textReveil)
 
-    tempsReel = horlogeTempsReel();
-    reveil.toLocaleString()
-    console.log(tempsReel)
-    console.log(reveil)
-    if(tempsReel == reveil){
-        alert('debout on se leve')
+    arrayReveil.push({ date: reveil, text: textReveil })
 
-    }
+    tabStr_reveil = arrayReveil.join(' ') // par defaut il enleve les , 
+    document.getElementById('taleauTourHorloge').innerHTML = reveil + textReveil
+
+    // arrayReveil.date = reveil
+    // arrayReveil.text = textReveil
+    return arrayReveil;
+}
+
+
+
+function compareDate() {
+    tempsReel = horlogeTempsReel();
+    tempsReel = (tempsReel.substr(0, 16));
+    attenteHorloge = setTimeout("compareDate()", 1000);
+    // console.log(arrayReveil)
+    findDate(tempsReel)
+    // if(tempsReel ==)
+    // console.log(tempsReel)
+
 
 }
-// document.getElementById('submitReveil').onclick = submitReveil();
+function findDate(tempsReel) {
+    for (var i = 0; i < arrayReveil.length; i++) {
+
+        // console.log(arrayReveil[i].date);
+        if (arrayReveil[i].date == tempsReel) {
+            text = arrayReveil[i].text
+            alert(text);
+            delete arrayReveil[i].date
+            delete arrayReveil[i].text
+        }
+        else {
+            console.log('false')
+        }
+    }
+}
+
+
+
+compareDate();
