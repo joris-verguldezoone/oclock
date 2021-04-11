@@ -85,21 +85,32 @@
 
  “dans x temps” avec x représentant le temps restant avant que l’heure ne
  soit atteinte. -->
-    <section id='horloge'>
-    <form name='horloge' > 
-    
-        <input type='text' id='tempsReelInput' name='tempsReelInput' onLoad="horlogeTempsReel();">
+    <section id='horloge_section'>
 
-    <label for='insertNumber'>InsertNumber</label>
-    <input type='datetime-local' id='insertDate' name='insertDate'>
-    <textarea id='insertText' name='insertText' placeholder="Rendez-vous professionnel"></textarea>  
-    <input type='button' name='submitReveil' id='submitReveil' onClick='submitReveilFunc();' value='Enregistrer'>
-    <div id='taleauTourHorloge'></div>
-<!-- 
-    <label for=''></label>
-    <input type='' id='' name='' placeholder=''> --> -->
-    
-    </form> 
+        <form name='horloge' id='horloge_form' > 
+            <span class='tools_title'>Reveil</span>
+            
+            <input type='text' id='tempsReelInput' name='tempsReelInput' onLoad="horlogeTempsReel();">
+
+            <div class='holorge_inputs'>
+
+                <input type='datetime-local' id='insertDate' name='insertDate'>
+
+                <textarea id='insertText' name='insertText' placeholder="Rendez-vous professionnel"></textarea>
+
+                <input type='button' name='submitReveil' id='submitReveil' onClick='submitReveilFunc();' value='Enregistrer'>
+                
+            </div>
+
+  
+        </form> 
+        
+        <div id='tableauTourHorloge'>
+
+        </div>
+        <div id='tableauTourHorlogePasse'>
+
+        </div>
     </section>
  
 

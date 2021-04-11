@@ -108,9 +108,54 @@ main{
     justify-content: center;
     flex-direction: column;
 }
+#horloge_section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width:50%;
+}
+#horloge_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.holorge_inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-
-
+#tableauTourHorloge{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    margin-left:2%;
+    height:20vh;
+    width:30%;
+    background-color: white;
+    border-radius: 1em;
+    box-shadow: 2px 2px 2px black;
+    margin-top: 20px;
+}
+#tableauTourHorlogePasse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    margin-left:2%;
+    height:20vh;
+    width:30%;
+    background-color: grey;
+    border-radius: 1em;
+    box-shadow: 2px 2px 2px black;
+    margin-top: 20px;
+}
 
 /* FOOTER */
 footer{
@@ -137,3 +182,4 @@ footer{
     display: flex;
     flex-direction: column;
 }
+
