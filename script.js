@@ -1,5 +1,5 @@
 // minuteur
-
+// a la base ça faisait 1500 lignes 
 var sum = 0;
 var attente;
 
@@ -120,9 +120,6 @@ function horlogeTempsReel() {
 
     return datestring;
 }
-
-
-
 
 tempsReel = horlogeTempsReel();
 
