@@ -1,5 +1,6 @@
 body{
     margin:0;
+    font-family: 'Ubuntu', sans-serif;
 }
 .fa-arrow-right{
     color:black;
@@ -13,7 +14,7 @@ header{
     padding:10px;
     height:5vh;
     font-size: 2em;
-    background-color: rgb(68, 68, 197);
+    background-color: #84A696;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -36,12 +37,19 @@ main{
     justify-content: center;
     flex-direction: column;
 }
-#div_form_minuteur{
+.div_form_minuteur_top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:20px;
+    width:100%;
+}
+.div_form_minuteur{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding:20px;
-    width:85%;
+    width:100%;
 }
 #sectionChrono{
     height:50vh;
@@ -63,7 +71,7 @@ main{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width:30%;
+    width:60%;
 }
 #section_chrono_inputs{
     display: flex;
@@ -72,6 +80,12 @@ main{
     align-items: center;
     /* width:10vh; */
     padding:20px;
+}
+#center_chrono_top{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 #form_chronometre{
     display: flex;
@@ -114,18 +128,22 @@ main{
     justify-content: space-around;
     align-items: center;
     width:50%;
+    height: 50vh;
 }
 #horloge_form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    height:40%;
+
 }
 .holorge_inputs{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    height:60%;
 }
 
 #tableauTourHorloge{
@@ -161,7 +179,7 @@ main{
 footer{
     height:20vh;
     font-size: 2em;
-    background-color: rgb(68, 68, 197);
+    background-color: #84A696;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -182,4 +200,15 @@ footer{
     display: flex;
     flex-direction: column;
 }
-
+input{
+    height:2vh;
+    width:10vw;
+}
+textarea{
+    height:5vh;
+    width:10vw;
+}
+select{
+    height:2vh;
+    width:10vw;
+}

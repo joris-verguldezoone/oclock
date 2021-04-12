@@ -3,14 +3,14 @@
 var sum = 0;
 var attente;
 
-function addMore() {
+function addMore() { // ajouter 30 sec 
     sum = parseInt(window.document.formulaire.minuteur.value) // permet de reprendre la valeur en cours, le parseInt est indispensable sinon il affiche un string
     sum = sum + 30;
     window.document.formulaire.minuteur.value = sum
 
     return sum // facultatif
 }
-function addLess() {
+function addLess() { // enlever 30 sec
     sum = parseInt(window.document.formulaire.minuteur.value)
 
     sum = sum - 30;
@@ -21,18 +21,18 @@ function addLess() {
 
 var inuse = 0;
 
-function startMinuteur() {
+function startMinuteur() { // condition pour le recursiv afin qu'il ne se lance pas plusieurs fois si on clique plusieurs fois
     if (!inuse) {
         minutageGo()
-        inuse = 1;
+        inuse = 1; // condition
     }
 }
 function stopMinuteur() {
     clearTimeout(attente)
-    inuse = 0
+    inuse = 0 // condition
 }
 function resetMinuteur() {
-    inuse = 0
+    inuse = 0 // condition
 }
 function minutageGo() {
     var nombre_qui_change = window.document.formulaire.minuteur.value;
@@ -75,7 +75,7 @@ function resetChrono() {
     inuse = 0
     console.log(tab)
     console.log(tabStr)
-    tab = [];
+    tab = []; // on reinitialise pour l'affichage
     tabStr = '';
     document.getElementById('taleauTour').innerHTML = tabStr
 
@@ -96,26 +96,9 @@ function chronoTour() {
     tab.push(window.document.chrono.chronoDisplay.value);
     tab.push('<br/ >')
     console.log(tab);
-    tabStr = tab.join(' ') // par defaut il enleve les , 
+    tabStr = tab.join(' ') // par defaut il enleve les , merci stackoverflow
     document.getElementById('taleauTour').innerHTML = tabStr
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Horloge
 var attenteHorloge;
@@ -128,12 +111,12 @@ function horlogeTempsReel() {
     var d = new Date()
     // console.log(tempsReel)
     var datestring =
-        d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+        d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + // mise au format de l'input, /= toLocaleString 
         ("0" + d.getDate()).slice(-2) + " " + ("0" + d.getHours()).slice(-2) + ":" +
         ("0" + d.getMinutes()).slice(-2) + ":" + ("0" + d.getSeconds()).slice(-2);
 
     document.horloge.tempsReelInput.value = datestring
-    attenteHorloge = setTimeout("horlogeTempsReel()", 1000);
+    attenteHorloge = setTimeout("horlogeTempsReel()", 1000); // 1000 millisecondes
 
     return datestring;
 }
@@ -147,52 +130,38 @@ arrayReveil = [];
 var reveil_passe = "";
 var tabStr_reveil = "";
 var printEventArray = [];
-
+var music = 0;
 function submitReveilFunc() {
 
-    reveil = window.document.horloge.insertDate.value
+    reveil = window.document.horloge.insertDate.value // on prend les valeurs des inputs
     textReveil = window.document.horloge.insertText.value
     reveil = reveil.replace('T', ' ');
-
+    music = window.document.horloge.select_Music.value
     arrayReveil.push({ date: reveil, text: textReveil })
 
 
     return arrayReveil;
 }
-var result_diff = ""
+var result_diff = "";
 
-function compareDate() {
+function compareDate() { // fonction qui me permet d'appeler les autres recursiv 
     tempsReel = horlogeTempsReel();
     tempsReel = (tempsReel.substr(0, 16));
     attenteHorloge = setTimeout("compareDate()", 1000);
 
     // arrayReveil = submitReveilFunc();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     findDate(tempsReel)
     // if(tempsReel ==)
     // console.log(tempsReel)
 }
-function findDate(tempsReel) {
+function findDate(tempsReel) { // ça se complique 
     tabStr_reveil = "";
 
-    for (var i = 0; i < arrayReveil.length; i++) {
+    for (var i = 0; i < arrayReveil.length; i++) { // pour chaque valeur je compare la date en temps réel 
 
-        if (arrayReveil[i].date != null) {
+        if (arrayReveil[i].date != null) { // si ma date existe encore
 
-            function get_time_diff(datetime) {
+            function get_time_diff(datetime) { // time diff de stackoverflow car la vie est trop courte pour comparer des dates tout seul dans son coin 
                 var datetime = typeof datetime !== 'undefined' ? datetime : "2014-01-01 01:02:03.123456 GMT+01:00";
 
                 var datetime = new Date(datetime).getTime();
@@ -214,20 +183,14 @@ function findDate(tempsReel) {
 
                 var date_diff = new Date(milisec_diff);
                 // console.log(date_diff.getHours()) 
-                var date_diff_hour = date_diff.getHours() - 1 // Pour rétable le GMT+01:00 qui fonctionne pas au dessus , les timezone en js c kk 
+                var date_diff_hour = date_diff.getHours() - 1 // Pour rétablir le GMT+01:00 qui fonctionne pas au dessus , les timezone en js c kk 
                 return days + " jours " + date_diff_hour + " heures " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds";
             }
-            result_diff = get_time_diff(arrayReveil[i].date);
+            result_diff = get_time_diff(arrayReveil[i].date); // du coup j'aurais le timediff de toutes les dates rentrés
             console.log(result_diff)
             // console.log(diff)
             console.log(arrayReveil[i].date)
 
-            // for (var i = 0; i < arrayReveil.length; i++) {
-
-            //     // console.log(arrayReveil[i].date);
-            //     console.log(printEventArray)
-
-            //     printEventArray.push(arrayReveil[i].date + " - " + arrayReveil[i].text + '<br/>')
             if (arrayReveil[i] == null) {
                 //         
                 tabStr_reveil += "";
@@ -237,8 +200,7 @@ function findDate(tempsReel) {
 
                 tabStr_reveil += arrayReveil[i].date + " - " + arrayReveil[i].text + '<br/>' + result_diff + '<br/>'
             }
-            //     tabStr_reveil = printEventArray.join(' ') // par defaut il enleve les , 
-            //     // console.log(reveil_passe);
+
             tabStr_reveil = tabStr_reveil.replaceAll('undefined - undefined<br/>', ' '); // triche lvl avancé
 
             window.document.getElementById('tableauTourHorloge').innerHTML = tabStr_reveil
@@ -248,16 +210,24 @@ function findDate(tempsReel) {
             // }   
         }
 
-
-
         if (arrayReveil[i].date == tempsReel) {
             texte = arrayReveil[i].text
+            if (music == 1) {
+                document.getElementById('music_pc_window').play();
+                // document.getElementById('music_mac_window').play(); // jsp comment detecter si c'est un mac ou pc 
+            }
+            if (music == 2) {
+                document.getElementById('music_pc_guts').play();
+                // document.getElementById('music_mac_guts').play();  // jsp comment detecter si c'est un mac ou pc 
+            }
+
             alert(texte);
+
             // alertes passées 
-            reveil_passe += arrayReveil[i].date + " - " + arrayReveil[i].text + '<br/>'
+            reveil_passe += arrayReveil[i].date + " - " + arrayReveil[i].text + '<br/>' // jmet mes valeur déjà passées dans un string pour afficher + facilement
             document.getElementById('tableauTourHorlogePasse').innerHTML = reveil_passe
 
-            delete arrayReveil[i].date
+            delete arrayReveil[i].date // jdelete les evenement déjà passés pour les afficher dans le carré sombre
             delete arrayReveil[i].text
             // delete arrayReveil[i] erreur cannot read property of date 202
             // console.log(arrayReveil)
@@ -269,7 +239,4 @@ function findDate(tempsReel) {
         }
     }
 }
-
-
-
-compareDate();
+compareDate(); // recursiv façon bledard pcq mon onLoad fonctionne pas sur mon input jsp pk 
