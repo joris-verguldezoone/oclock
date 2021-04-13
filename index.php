@@ -117,7 +117,7 @@
 
                 <select name="select_Music">
                     <option value="0">Choix de la sonnerie</option>
-                    <option value="1">Window98</option>
+                    <option value="1">Window98 by Vin'sap</option>
                     <option value="2">Guts</option>
                     <!-- <option value="2">Evangelion</option> -->
                 </select>

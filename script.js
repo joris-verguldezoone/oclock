@@ -1,5 +1,5 @@
 // minuteur
-// a la base ça faisait 1500 lignes 
+// a la base ça faisait 1000 lignes 
 var sum = 0;
 var attente;
 
@@ -58,7 +58,7 @@ function minutageGo() {
 var inuse2 = 0
 var attenteChrono;
 function startChrono() { // start and stop 
-    console.log(inuse2)
+    // console.log(inuse2)
     if (inuse2) {   // y'a un cheat code quand on spam le click chaque seconde s'ajoute instantannément 
         inuse2 = 0;
         clearTimeout(attenteChrono)
@@ -73,8 +73,8 @@ function startChrono() { // start and stop
 function resetChrono() {
     clearTimeout(attenteChrono)
     inuse = 0
-    console.log(tab)
-    console.log(tabStr)
+    // console.log(tab)
+    // console.log(tabStr)
     tab = []; // on reinitialise pour l'affichage
     tabStr = '';
     document.getElementById('taleauTour').innerHTML = tabStr
@@ -95,7 +95,7 @@ var tabStr = ''
 function chronoTour() {
     tab.push(window.document.chrono.chronoDisplay.value);
     tab.push('<br/ >')
-    console.log(tab);
+    // console.log(tab);
     tabStr = tab.join(' ') // par defaut il enleve les , merci stackoverflow
     document.getElementById('taleauTour').innerHTML = tabStr
 }
@@ -140,7 +140,6 @@ function submitReveilFunc() {
     return arrayReveil;
 }
 var result_diff = "";
-
 function compareDate() { // fonction qui me permet d'appeler les autres recursiv 
     tempsReel = horlogeTempsReel();
     tempsReel = (tempsReel.substr(0, 16));
@@ -151,6 +150,8 @@ function compareDate() { // fonction qui me permet d'appeler les autres recursiv
     // if(tempsReel ==)
     // console.log(tempsReel)
 }
+var alertVar = 0;
+
 function findDate(tempsReel) { // ça se complique 
     tabStr_reveil = "";
 
@@ -184,9 +185,9 @@ function findDate(tempsReel) { // ça se complique
                 return days + " jours " + date_diff_hour + " heures " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds";
             }
             result_diff = get_time_diff(arrayReveil[i].date); // du coup j'aurais le timediff de toutes les dates rentrés
-            console.log(result_diff)
+            // console.log(result_diff)
             // console.log(diff)
-            console.log(arrayReveil[i].date)
+            // console.log(arrayReveil[i].date)
 
             if (arrayReveil[i] == null) {
                 //         
@@ -206,20 +207,34 @@ function findDate(tempsReel) { // ça se complique
 
             // }   
         }
+        console.log(document.getElementById('music_pc_window').currentTime)
+        console.log(alertVar)
+        if (document.getElementById('music_pc_window').currentTime > 0 && alertVar == 0) { // permet de déclencher l'alert apres la musique 
+            alertVar = 1  // sinon l'alert se déclenche dans tous les cas avant, encore une histoire compliqué pour rien 
+            alert(texte); // alertVar permet de rentrer qu'une fois dans l'alert car on est dans une boucle sinon l'alert s'affiche en boucle
 
+        }
+        if (document.getElementById('music_pc_guts').currentTime > 0 && alertVar == 0) { // permet de déclencher l'alert apres la musique 
+            alertVar = 1  // sinon l'alert se déclenche dans tous les cas avant, encore une histoire compliqué pour rien 
+            alert(texte); // alertVar permet de rentrer qu'une fois dans l'alert car on est dans une boucle sinon l'alert s'affiche en boucle
+
+        }
         if (arrayReveil[i].date == tempsReel) {
+            alertVar = 0; // seul moment ou on peut reinitialiser 
+
             texte = arrayReveil[i].text
             if (music == 1) {
                 document.getElementById('music_pc_window').play();
                 // document.getElementById('music_mac_window').play(); // jsp comment detecter si c'est un mac ou pc 
+
             }
             if (music == 2) {
                 document.getElementById('music_pc_guts').play();
                 // document.getElementById('music_mac_guts').play();  // jsp comment detecter si c'est un mac ou pc 
+
+                // alert(texte);
+
             }
-
-            alert(texte);
-
             // alertes passées 
             reveil_passe += arrayReveil[i].date + " - " + arrayReveil[i].text + '<br/>' // jmet mes valeur déjà passées dans un string pour afficher + facilement
             document.getElementById('tableauTourHorlogePasse').innerHTML = reveil_passe
@@ -232,8 +247,9 @@ function findDate(tempsReel) { // ça se complique
 
         }
         else {
-            console.log('false')
+            // console.log('false')
         }
     }
+
 }
 compareDate(); // recursiv façon bledard pcq mon onLoad fonctionne pas sur mon input jsp pk 
